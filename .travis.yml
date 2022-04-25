@@ -1,0 +1,12 @@
+language: generic
+sudo: required
+services :
+  - docker
+
+before_install:
+  - docker build -t jovanaveljovic/docker-react -f Dockerfile.dev . 
+# The test command will force Jest to run in CI-mode,
+# and tests will only run once instead of launching the watcher.
+script:
+  - docker run -e CI=true jovanaveljovic/docker-react npm run test
+  
