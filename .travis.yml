@@ -9,4 +9,17 @@ before_install:
 # and tests will only run once instead of launching the watcher.
 script:
   - docker run -e CI=true jovanaveljovic/docker-react npm run test
-  
+
+# deploying app to AWS
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "docker-react"
+  env: "Docker-env"
+  bucket_name: ""
+  bucket_path: ""
+  on:
+    branch: master
+    
+
+
